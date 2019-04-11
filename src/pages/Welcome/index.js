@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import api from '~/services/api';
 
 import {
@@ -14,6 +15,12 @@ import {
 import styles from './styles';
 
 export default class Welcome extends Component {
+  static propTypes = {
+    navigation: PropTypes.shape({
+      navigate: PropTypes.func,
+    }).isRequired,
+  };
+
   state = {
     username: '',
     loading: false,
@@ -40,7 +47,7 @@ export default class Welcome extends Component {
     try {
       await this.checkUserExists(username);
       await this.saveUser(username);
-      navigation.navigate('Repositories');
+      navigation.navigate('User');
     } catch (error) {
       this.setState({ loading: false, error: true });
     }

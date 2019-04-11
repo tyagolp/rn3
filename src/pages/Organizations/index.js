@@ -1,18 +1,25 @@
 import React from 'react';
 
-import { View, StyleSheet } from 'react-native';
+import { View } from 'react-native';
+import PropTypes from 'prop-types';
 
-// import styles from './styles';
+import Header from '~/components/Header';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
-const Organizations = () => <View />;
+const Organizations = () => (
+  <View>
+    <Header title="Organizações" />
+  </View>
+);
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-});
+const TabIcon = ({ tintColor }) => <Icon name="building" size={20} color={tintColor} />;
+
+TabIcon.protoType = {
+  tintColor: PropTypes.string.isRequired,
+};
+
+Organizations.navigationOptions = {
+  tabBarIcon: TabIcon,
+};
 
 export default Organizations;
