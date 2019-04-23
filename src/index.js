@@ -1,76 +1,19 @@
-/* import React, { Component } from 'react';
-import { AsyncStorage } from 'react-native';
-import './config/ReactotronConfig';
-import './config/DevToolsConfig';
+import React from 'react';
+import { Provider } from 'react-redux';
 
-import createNavigator from '~/routes';
-
-export default class extends Component {
-  state = {
-    userChecked: false,
-    userLogged: false,
-  };
-
-  async componentDidMount() {
-    const username = await AsyncStorage.getItem('@Githuber:username');
-    //console.tron.log(userLogged)
-    this.setState({
-      userChecked: true,
-      userLogged: !!username,
-    });
-  }
-
-  render() {
-    const { userChecked, userLogged } = this.state;
-
-    if (!userChecked) return null;
-
-    const Routes = createNavigator(userLogged);
-
-    return <Routes />;
-  }
-} */
-
-/* import React from 'react';
-import './config/ReactotronConfig';
-import './config/DevToolsConfig';
-
-import Routes from './routes';
-
-const index = () => <Routes />;
-
-export default index; */
-
-import React, { Component } from 'react';
-import { AsyncStorage } from 'react-native';
+import store from '~/store';
+import TodoList from './TodoList';
 
 import './config/ReactotronConfig';
 import './config/DevToolsConfig';
-import createNavigator from './routes';
+// import Routes from './routes';
 
-// import { Container } from './styles';
+// const App = () => <Routes />;
 
-export default class App extends Component {
-  state = {
-    userChecked: false,
-    userLogged: false,
-  };
+const App = () => (
+  <Provider store={store}>
+    <TodoList />
+  </Provider>
+);
 
-  async componentDidMount() {
-    const username = await AsyncStorage.getItem('@Githuber:username');
-
-    this.setState({
-      userChecked: true,
-      userLogged: !!username,
-    });
-  }
-
-  render() {
-    const { userChecked, userLogged } = this.state;
-    if (!userChecked) return null;
-
-    const Routes = createNavigator(userLogged);
-
-    return <Routes />;
-  }
-}
+export default App;
